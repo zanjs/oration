@@ -3,6 +3,7 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
+import AutoExpand exposing (withPlaceholder)
 import Identicon exposing (identicon)
 import Markdown
 
@@ -21,12 +22,14 @@ type alias Model =
     , email : String
     , url : String
     , preview : Bool
+    , autoexpand : AutoExpand.State
+    , inputText : String
     }
 
 
 model : Model
 model =
-    Model "" "" "" "" False
+    Model "" "" "" "" False (AutoExpand.initState config) ""
 
 
 
@@ -39,6 +42,7 @@ type Msg
     | Email String
     | Url String
     | Preview
+    | AutoExpandInput { textValue : String, state : AutoExpand.State }
 
 
 update : Msg -> Model -> Model
@@ -59,6 +63,12 @@ update msg model =
         Preview ->
             { model | preview = not model.preview }
 
+        AutoExpandInput { state, textValue } ->
+            { model
+                | autoexpand = state
+                , inputText = textValue
+            }
+
 
 
 -- VIEW
@@ -73,18 +83,19 @@ view model =
         markdown =
             markdownContent model.comment model.preview
     in
-    div [ id "oration" ]
+    div [ id "oration-post" ]
         [ Html.form [ action "/", method "post", id "oration-form" ]
-            [ textarea [ name "comment", placeholder "Write a comment here (min 3 characters).", minlength 3, cols 55, rows 4, onInput Comment ] []
-            , br [] []
-            , span [ id "oration-identicon" ] [ identicon "25px" identity ]
-            , input [ type_ "text", name "name", placeholder "Name (optional)", autocomplete True, onInput Name ] []
-            , input [ type_ "email", name "email", placeholder "Email (optional)", autocomplete True, onInput Email ] []
-            , input [ type_ "url", name "url", placeholder "Website (optional)", onInput Url ] []
-            , br [] []
-            , input [ type_ "checkbox", name "preview", onClick Preview ] []
-            , text "Preview"
-            , input [ type_ "submit", value "Comment" ] []
+            [ AutoExpand.view config model.autoexpand model.inputText
+            , textarea [ name "comment", placeholder "Write a comment here (min 3 characters).", minlength 3, cols 55, rows 4, onInput Comment ] []
+            , div [ id "oration-auth" ]
+                [ span [ id "oration-identicon" ] [ identicon "25px" identity ]
+                , input [ type_ "text", name "name", placeholder "Name (optional)", autocomplete True, onInput Name ] []
+                , input [ type_ "email", name "email", placeholder "Email (optional)", autocomplete True, onInput Email ] []
+                , input [ type_ "url", name "url", placeholder "Website (optional)", onInput Url ] []
+                , input [ type_ "checkbox", id "oration-preview-check", name "preview", onClick Preview ] []
+                , label [ for "oration-preview-check" ] [ text "Preview" ]
+                , input [ type_ "submit", class "oration-submit", value "Comment" ] []
+                ]
             , viewValidation model
             ]
         , div [ id "comment-preview" ] <|
@@ -110,3 +121,15 @@ markdownContent content preview =
         content
     else
         ""
+
+{-| Configuration for AutoExpand. -}
+config : AutoExpand.Config Msg
+config =
+    AutoExpand.config
+        { onInput = AutoExpandInput
+        , padding = 10
+        , lineHeight = 20
+        , minRows = 4
+        , maxRows = 20
+        }
+        |> withPlaceholder "Write a comment here (min 3 characters)."

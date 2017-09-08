@@ -17,6 +17,21 @@
 
 <body>
     Index page.<br />
+    {% if name %}
+        {{ name }}
+    {% else %}
+        Name isn't defined.
+    {% endif %}
+    {% if email %}
+        {{ email }}
+    {% else %}
+        Email isn't defined.
+    {% endif %}
+    {% if url %}
+        {{ url }}
+    {% else %}
+        Website isn't defined.
+    {% endif %}
     <div id=elm-container></div>
     <script src="js/app.js"></script>
 </body>

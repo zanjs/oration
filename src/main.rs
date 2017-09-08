@@ -21,6 +21,7 @@ extern crate dotenv;
 extern crate error_chain;
 extern crate rand;
 extern crate rocket;
+extern crate rocket_contrib;
 extern crate serde_json;
 #[macro_use]
 extern crate serde_derive;
@@ -47,19 +48,18 @@ mod errors;
 #[cfg(test)]
 mod tests;
 
-use std::io;
 use std::collections::HashMap;
 use rocket::http::{Cookie, Cookies};
 use rocket::http::RawStr;
 use rocket::request::Form;
-use rocket::response::NamedFile;
+use rocket_contrib::Template;
 use models::preferences::Preference;
 use std::process;
 use yansi::Paint;
 
 /// Serve up the index file, which ultimately launches the Elm app.
 #[get("/")]
-fn index(mut cookies: Cookies) -> io::Result<NamedFile> {
+fn index(mut cookies: Cookies) -> Template {
     let mut user = HashMap::new();
     let values = &["name", "email", "url"];
     for v in values.iter() {
@@ -71,7 +71,7 @@ fn index(mut cookies: Cookies) -> io::Result<NamedFile> {
 
     log::info!("{:?}", user);
 
-    NamedFile::open("public/index.html")
+    Template::render("index", &user)
 }
 
 //NOTE: we can use FormInput<'c>, url: &'c RawStr, for unvalidated data if/when we need it.
@@ -124,7 +124,7 @@ fn get_session(conn: db::Conn) -> String {
 fn rocket() -> (rocket::Rocket, db::Conn) {
     let pool = db::init_pool();
     let conn = db::Conn(pool.get().expect("database connection for initialisation"));
-    let rocket = rocket::ignite().manage(pool).mount(
+    let rocket = rocket::ignite().manage(pool).attach(Template::fairing()).mount(
         "/",
         routes![
             index,

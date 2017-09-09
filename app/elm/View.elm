@@ -25,9 +25,9 @@ view model =
                 , input [ type_ "text", name "name", placeholder "Name (optional)", autocomplete True, onInput Name ] []
                 , input [ type_ "email", name "email", placeholder "Email (optional)", autocomplete True, onInput Email ] []
                 , input [ type_ "url", name "url", placeholder "Website (optional)", onInput Url ] []
-                , input [ type_ "checkbox", id "oration-preview-check", name "preview", onClick Preview ] []
+                , input [ type_ "checkbox", id "oration-preview-check", onClick Preview ] []
                 , label [ for "oration-preview-check" ] [ text "Preview" ]
-                , input [ type_ "submit", class "oration-submit", value "Comment" ] []
+                , input [ type_ "submit", class "oration-submit", value "Comment", onClick SaveUserState ] []
             ]
             , viewValidation model
             ]

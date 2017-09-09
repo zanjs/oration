@@ -1,7 +1,7 @@
 module Update exposing (..)
 
 import Models exposing (Model)
---import Storage exposing (saveUserState,userStateLoaded,injectChanges)
+import Storage exposing (saveUserState,userStateLoaded,injectChanges)
 import Msg exposing (Msg(..))
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -22,9 +22,15 @@ update msg model =
         Preview ->
             ({ model | preview = not model.preview }, Cmd.none)
 
+        OnUserStateLoaded changes ->
+            (injectChanges model changes, Cmd.none)
+
+        SaveUserState ->
+            (model, saveUserState model)
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
     [
+        userStateLoaded
     ]

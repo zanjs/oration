@@ -1,5 +1,7 @@
 import Elm from './main';
-const elmDiv = document.querySelector('#elm-container');
+import { initLocalStoragePort } from './localStoragePort';
+const elmDiv = document.getElementById('oration');
 if (elmDiv) {
-  Elm.Main.embed(elmDiv);
+    const app = Elm.Main.embed(elmDiv);
+    initLocalStoragePort(app);
 }

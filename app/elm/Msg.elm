@@ -8,5 +8,6 @@ type Msg
     | Email String
     | Url String
     | Preview
-
+    | SaveUserState
+    | OnUserStateLoaded (Maybe Changes)
 

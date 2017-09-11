@@ -1,8 +1,8 @@
 module Storage exposing
-  (saveUserState, loadUserState, userStateLoaded,injectChanges)
+  (saveUserState, loadUserState, userStateLoaded, injectChanges)
 
 import Json.Encode as J exposing (object)
-import Json.Decode as D exposing (int, string, float, list, Decoder)
+import Json.Decode as D exposing (string, bool, Decoder)
 import Json.Decode.Pipeline exposing (decode, required)
 import Interop exposing (storeObject, retrieveObject, objectRetrieved)
 import Msg exposing (Msg(OnUserStateLoaded))
@@ -26,14 +26,14 @@ userStateLoaded =
     objectRetrieved retrieval
 
 injectChanges : Model -> Maybe Changes -> Model
-injectChanges model progress =
-  case progress of
-    Just p ->
+injectChanges model changes =
+  case changes of
+    Just c ->
       { model |
-        name = p.name,
-        email = p.email,
-        url = p.url,
-        preview = p.preview
+        name = c.name,
+        email = c.email,
+        url = c.url,
+        preview = c.preview
       }
     Nothing ->
       model
@@ -52,12 +52,12 @@ saveUserState model =
     storeObject (stateKey, encode <| map model)
 
 encode : Changes -> J.Value
-encode p =
+encode c =
   object [
-    ("name", J.string p.name),
-    ("email", J.string p.email),
-    ("url", J.string p.url),
-    ("preview", J.bool p.preview)
+    ("name", J.string c.name),
+    ("email", J.string c.email),
+    ("url", J.string c.url),
+    ("preview", J.bool c.preview)
   ]
 
 modelDecoder : Decoder Changes
@@ -66,6 +66,6 @@ modelDecoder =
     |> required "name" string
     |> required "email" string
     |> required "url" string
-    |> required "preview" D.bool
+    |> required "preview" bool
 
 

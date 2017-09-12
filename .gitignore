@@ -5,6 +5,8 @@ public
 app/node_modules
 app/elm/elm-stuff
 app/js/main.js
+app/elm/build/
+app/elm/src/elm-stuff/
 app/package-lock.json
 Cargo.lock
 *.db

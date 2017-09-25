@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `_IMPL_DESERIALIZE_FOR_Config` constant in crate `oration`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, _IMPL_DESERIALIZE_FOR_Config">
+
+    <title>oration::config::_IMPL_DESERIALIZE_FOR_Config - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc constant">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>oration</a>::<wbr><a href='index.html'>config</a></p><script>window.sidebarCurrent = {name: '_IMPL_DESERIALIZE_FOR_Config', ty: 'constant', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Constant <a href='../index.html'>oration</a>::<wbr><a href='index.html'>config</a>::<wbr><a class="constant" href=''>_IMPL_DESERIALIZE_FOR_Config</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/oration/config.rs.html#7' title='goto source code'>[src]</a></span></h1>
+<pre class='rust const'>const _IMPL_DESERIALIZE_FOR_Config: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a><code> = </code><code>{
+    extern crate serde as _serde;
+    #[automatically_derived]
+    impl &lt;&#39;de&gt; _serde::Deserialize&lt;&#39;de&gt; for Config {
+        fn deserialize&lt;__D&gt;(__deserializer: __D)
+         -&gt; _serde::export::Result&lt;Self, &lt;__D&gt;::Error&gt; where
+         __D: _serde::Deserializer&lt;&#39;de&gt; {
+                                            #[allow(non_camel_case_types)]
+                                            enum __Field {
+                                                __field0,
+                                                __ignore,
+                                            }
+                                            struct __FieldVisitor;
+                                            impl &lt;&#39;de&gt;
+                                             _serde::de::Visitor&lt;&#39;de&gt; for
+                                             __FieldVisitor {
+                                                type
+                                                Value
+                                                =
+                                                __Field;
+                                                fn expecting(self: &amp;Self,
+                                                             formatter:
+                                                                 &amp;mut _serde::export::Formatter)
+                                                 -&gt;
+                                                     _serde::export::fmt::Result {
+                                                                                     &lt;_serde::export::Formatter&gt;::write_str(formatter,
+                                                                                                                            &quot;field identifier&quot;)
+                                                                                 }
+                                                fn visit_u64&lt;__E&gt;(self: Self,
+                                                                  __value:
+                                                                      u64)
+                                                 -&gt;
+                                                     _serde::export::Result&lt;&lt;Self&gt;::Value,
+                                                                            __E&gt;
+                                                 where
+                                                 __E: _serde::de::Error {
+                                                                            match __value
+                                                                                {
+                                                                                0u64
+                                                                                =&gt;
+                                                                                _serde::export::Ok(__Field::__field0),
+                                                                                _
+                                                                                =&gt;
+                                                                                _serde::export::Err(_serde::de::Error::invalid_value(_serde::de::Unexpected::Unsigned(__value),
+                                                                                                                                     &amp;&quot;field index 0 &lt;= i &lt; 1&quot;)),
+                                                                            }
+                                                                        }
+                                                fn visit_str&lt;__E&gt;(self: Self,
+                                                                  __value:
+                                                                      &amp;str)
+                                                 -&gt;
+                                                     _serde::export::Result&lt;&lt;Self&gt;::Value,
+                                                                            __E&gt;
+                                                 where
+                                                 __E: _serde::de::Error {
+                                                                            match __value
+                                                                                {
+                                                                                &quot;host&quot;
+                                                                                =&gt;
+                                                                                _serde::export::Ok(__Field::__field0),
+                                                                                _
+                                                                                =&gt;
+                                                                                _serde::export::Ok(__Field::__ignore),
+                                                                            }
+                                                                        }
+                                                fn visit_bytes&lt;__E&gt;(self:
+                                                                        Self,
+                                                                    __value:
+                                                                        &amp;[u8])
+                                                 -&gt;
+                                                     _serde::export::Result&lt;&lt;Self&gt;::Value,
+                                                                            __E&gt;
+                                                 where
+                                                 __E: _serde::de::Error {
+                                                                            match __value
+                                                                                {
+                                                                                b&quot;host&quot;
+                                                                                =&gt;
+                                                                                _serde::export::Ok(__Field::__field0),
+                                                                                _
+                                                                                =&gt;
+                                                                                {
+                                                                                    _serde::export::Ok(__Field::__ignore)
+                                                                                }
+                                                                            }
+                                                                        }
+                                            }
+                                            impl &lt;&#39;de&gt;
+                                             _serde::Deserialize&lt;&#39;de&gt; for
+                                             __Field {
+                                                #[inline]
+                                                fn deserialize&lt;__D&gt;(__deserializer:
+                                                                        __D)
+                                                 -&gt;
+                                                     _serde::export::Result&lt;Self,
+                                                                            &lt;__D&gt;::Error&gt;
+                                                 where
+                                                 __D: _serde::Deserializer&lt;&#39;de&gt; {
+                                                                                    _serde::Deserializer::deserialize_identifier(__deserializer,
+                                                                                                                                 __FieldVisitor)
+                                                                                }
+                                            }
+                                            struct __Visitor&lt;&#39;de&gt; {
+                                                marker: _serde::export::PhantomData&lt;Config&gt;,
+                                                lifetime: _serde::export::PhantomData&lt;&amp;&#39;de ()&gt;,
+                                            }
+                                            impl &lt;&#39;de&gt;
+                                             _serde::de::Visitor&lt;&#39;de&gt; for
+                                             __Visitor&lt;&#39;de&gt; {
+                                                type
+                                                Value
+                                                =
+                                                Config;
+                                                fn expecting(self: &amp;Self,
+                                                             formatter:
+                                                                 &amp;mut _serde::export::Formatter)
+                                                 -&gt;
+                                                     _serde::export::fmt::Result {
+                                                                                     &lt;_serde::export::Formatter&gt;::write_str(formatter,
+                                                                                                                            &quot;struct Config&quot;)
+                                                                                 }
+                                                #[inline]
+                                                fn visit_seq&lt;__A&gt;(self: Self,
+                                                                  mut __seq:
+                                                                      __A)
+                                                 -&gt;
+                                                     _serde::export::Result&lt;&lt;Self&gt;::Value,
+                                                                            &lt;__A&gt;::Error&gt;
+                                                 where
+                                                 __A: _serde::de::SeqAccess&lt;&#39;de&gt; {
+                                                                                     let __field0 =
+                                                                                         match match _serde::de::SeqAccess::next_element::&lt;String&gt;(&amp;mut __seq)
+                                                                                                   {
+                                                                                                   ::result::Result::Ok(val)
+                                                                                                   =&gt;
+                                                                                                   val,
+                                                                                                   ::result::Result::Err(err)
+                                                                                                   =&gt;
+                                                                                                   {
+                                                                                                       return ::result::Result::Err(::convert::From::from(err))
+                                                                                                   }
+                                                                                               }
+                                                                                             {
+                                                                                             Some(__value)
+                                                                                             =&gt;
+                                                                                             __value,
+                                                                                             None
+                                                                                             =&gt;
+                                                                                             {
+                                                                                                 return _serde::export::Err(_serde::de::Error::invalid_length(0usize,
+                                                                                                                                                              &amp;&quot;tuple of 1 elements&quot;));
+                                                                                             }
+                                                                                         };
+                                                                                     _serde::export::Ok(Config{host:
+                                                                                                                   __field0,})
+                                                                                 }
+                                                #[inline]
+                                                fn visit_map&lt;__A&gt;(self: Self,
+                                                                  mut __map:
+                                                                      __A)
+                                                 -&gt;
+                                                     _serde::export::Result&lt;&lt;Self&gt;::Value,
+                                                                            &lt;__A&gt;::Error&gt;
+                                                 where
+                                                 __A: _serde::de::MapAccess&lt;&#39;de&gt; {
+                                                                                     let mut __field0:
+                                                                                             _serde::export::Option&lt;String&gt; =
+                                                                                         _serde::export::None;
+                                                                                     loop 
+                                                                                          {
+                                                                                         match match _serde::de::MapAccess::next_key::&lt;__Field&gt;(&amp;mut __map)
+                                                                                                   {
+                                                                                                   ::result::Result::Ok(val)
+                                                                                                   =&gt;
+                                                                                                   val,
+                                                                                                   ::result::Result::Err(err)
+                                                                                                   =&gt;
+                                                                                                   {
+                                                                                                       return ::result::Result::Err(::convert::From::from(err))
+                                                                                                   }
+                                                                                               }
+                                                                                             {
+                                                                                             _serde::export::Some(__key)
+                                                                                             =&gt;
+                                                                                             {
+                                                                                                 match __key
+                                                                                                     {
+                                                                                                     __Field::__field0
+                                                                                                     =&gt;
+                                                                                                     {
+                                                                                                         if &lt;_serde::export::Option&gt;::is_some(&amp;__field0)
+                                                                                                            {
+                                                                                                                return _serde::export::Err(&lt;&lt;__A&gt;::Error
+                                                                                                                                               as
+                                                                                                                                               _serde::de::Error&gt;::duplicate_field(&quot;host&quot;));
+                                                                                                            }
+                                                                                                             __field0
+                                                                                                                 =
+                                                                                                                 _serde::export::Some(match _serde::de::MapAccess::next_value::&lt;String&gt;(&amp;mut __map)
+                                                                                                                                          {
+                                                                                                                                          ::result::Result::Ok(val)
+                                                                                                                                          =&gt;
+                                                                                                                                          val,
+                                                                                                                                          ::result::Result::Err(err)
+                                                                                                                                          =&gt;
+                                                                                                                                          {
+                                                                                                                                              return ::result::Result::Err(::convert::From::from(err))
+                                                                                                                                          }
+                                                                                                                                      });
+                                                                                                         }
+                                                                                                             _
+                                                                                                             =&gt;
+                                                                                                             {
+                                                                                                                 let _ =
+                                                                                                                     match _serde::de::MapAccess::next_value::&lt;_serde::de::IgnoredAny&gt;(&amp;mut __map)
+                                                                                                                         {
+                                                                                                                         ::result::Result::Ok(val)
+                                                                                                                         =&gt;
+                                                                                                                         val,
+                                                                                                                         ::result::Result::Err(err)
+                                                                                                                         =&gt;
+                                                                                                                         {
+                                                                                                                             return ::result::Result::Err(::convert::From::from(err))
+                                                                                                                         }
+                                                                                                                     };
+                                                                                                             }
+                                                                                                         }
+                                                                                                 }
+                                                                                                     _
+                                                                                                     =&gt;
+                                                                                                     break
+                                                                                                         ,
+                                                                                                 }
+                                                                                         }
+                                                                                         let __field0 =
+                                                                                             match __field0
+                                                                                                 {
+                                                                                                 _serde::export::Some(__field0)
+                                                                                                 =&gt;
+                                                                                                 __field0,
+                                                                                                 _serde::export::None
+                                                                                                 =&gt;
+                                                                                                 match _serde::private::de::missing_field(&quot;host&quot;)
+                                                                                                     {
+                                                                                                     ::result::Result::Ok(val)
+                                                                                                     =&gt;
+                                                                                                     val,
+                                                                                                     ::result::Result::Err(err)
+                                                                                                     =&gt;
+                                                                                                     {
+                                                                                                         return ::result::Result::Err(::convert::From::from(err))
+                                                                                                     }
+                                                                                                 },
+                                                                                             };
+                                                                                         _serde::export::Ok(Config{host:
+                                                                                                                       __field0,})
+                                                                                     }
+                                                                                 }
+                                                                                     const FIELDS:
+                                                                                           &amp;&#39;static [&amp;&#39;static str]
+                                                                                           =
+                                                                                         &amp;[&quot;host&quot;];
+                                                                                     _serde::Deserializer::deserialize_struct(__deserializer,
+                                                                                                                              &quot;Config&quot;,
+                                                                                                                              FIELDS,
+                                                                                                                              __Visitor{marker:
+                                                                                                                                            _serde::export::PhantomData::&lt;Config&gt;,
+                                                                                                                                        lifetime:
+                                                                                                                                            _serde::export::PhantomData,})
+                                                                                 }
+                                        } }</code></pre></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "oration";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

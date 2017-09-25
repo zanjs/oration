@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["_IMPL_QUERYABLE_FOR_COMMENT",""],["_IMPL_SERIALIZE_FOR_Comment",""]],"struct":[["Comment","Queryable reference to the comments table."]]});

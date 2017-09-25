@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["_IMPL_QUERYABLE_FOR_THREAD",""],["_IMPL_SERIALIZE_FOR_Thread",""]],"struct":[["NewThread","Insertable reference to the threads table."],["Thread","Queryable reference to the threads table."]]});
